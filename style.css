@@ -1,0 +1,176 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    height: 100%;
+    transition: width 0.3s;
+}
+
+.menu:hover {
+    width: 220px; /* Aumenta a largura quando o mouse passa sobre o menu */
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.menu li:hover {
+    background-color: #444; /* Altera a cor de fundo quando o mouse passa sobre um item */
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px 15px;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #007bff; /* Altera a cor do texto quando o mouse passa sobre um link */
+}
+
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+.message-form {
+    display: none;
+}
+
+textarea {
+    width: 100%;
+    height: 300px;
+    margin-top: 30px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+h2 {
+    color: #333;
+}
+#messageForm{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    margin: 20px;
+}
+
+#messageForm label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#messageForm input[type="text"]{
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#messageForm button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#messageForm button:hover {
+    background-color: #0056b3;
+}
+
+#messageForm textarea {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+
+/* Estilos para o formulário */
+.message-form {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+}
+
+
+
+/* Estilos para o formulário FASE1 */
+.fase1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    margin: 20px;
+    width: 100%;
+}
+
+.fase1 h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.checkbox-container {
+    display: flex; /* Ativar layout flexbox */
+    align-items: center; /* Alinhar verticalmente no centro */
+    margin-bottom: 10px; /* Espaçamento entre os checkboxes */
+}
+
+.styled-checkbox {
+    display: none; /* Esconde o checkbox padrão */
+}
+
+.styled-label {
+    cursor: pointer;
+    font-weight: bold; /* Pode personalizar a fonte conforme desejar */
+    display: flex; /* Ativar layout flexbox */
+    align-items: center; /* Alinhar verticalmente no centro */
+    margin-right: 10px; /* Espaçamento entre o checkbox e o label */
+}
+
+.styled-checkbox + .styled-label::before {
+    content: ''; /* Cria o ícone de marcação */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007bff; /* Cor da borda quando marcado */
+    background-color: #fff; /* Cor de fundo do checkbox não marcado */
+    border-radius: 4px;
+    margin-right: 5px; /* Espaço entre o checkbox e o ícone de marcação */
+}
+
+.styled-checkbox:checked + .styled-label::before {
+    background-color: #007bff; /* Cor de fundo quando marcado */
+}
+
+
+
