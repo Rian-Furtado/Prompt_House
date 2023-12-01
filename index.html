@@ -1,143 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt_House</title>
-    <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-    <div class="menu">
-        <ul>
-            <li><a href="#" onclick="showForm(0)"><strong>SOLICITAÇÃO DE LICENÇAS (TOKENS)</strong></a></li>
-            <li><a href="#" onclick="showForm(1)"><strong>1° FASE DO SETUP</strong></a></li>
-            <li><a href="#" onclick="showForm(2)"><strong>2° FASE DO SETUP</strong></a></li>
-            <!-- Adicione outros tipos de mensagens aqui -->
-        </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="sidebar">
+      <a href="#form1" class="active">Solicitação de Tokens</a>
+      <a href="#form2">Documentação Trello</a>
+      <a href="#form3">2° Fase do Setup</a>
     </div>
-    <div class="content">
-        <div id="solicitacaoForm" class="message-form">
-            <h2>SOLICITAÇÃO DE LICENÇAS (TOKENS)</h2>
-            <form id="messageForm">
-                <label for="name">Nome de quem solicitou a demanda:</label>
-                <input type="text" id="name" required autocomplete="off">
-                <label for="ownerName">Nome do proprietário/loja:</label>
-                <input type="text" id="ownerName" required autocomplete="off">
-                <label for="cnpj">CNPJ/Unidade:</label>
-                <input type="text" id="cnpj" required autocomplete="off">
-                <label for="motivo">Motivo:</label>
-                <input type="text" id="motivo" required autocomplete="off">
-                <label for="licenses">Licenças necessárias:</label>
-                <input type="text" id="licenses" required autocomplete="off">
-                <label for="cancelLicenses">Licenças a serem canceladas:</label>
-                <input type="text" id="cancelLicenses" required autocomplete="off">
-                <label for="comments">Observações</label>
-                <input type="text" id="comments" required autocomplete="off">
-                <button type="button" onclick="generateMessage()">Gerar Mensagem</button>
-                <button type="button" id="copyButton" onclick="copyToClipboard()">Copiar</button>
-                <button type="button" onclick="clearForm()">Limpar Formulário</button>
-            </form>
-            <textarea id="messageOutput" readonly></textarea>
+    <div class="form-container">
+      <form id="form1" class="form active">
+        <h2>Solicitação de Licenças (Tokens)</h2>
+        <p>
+          Após uso documentar usar a mensagem para documentação no Trello do
+          Cliente.
+        </p>
+
+        <div class="form-group">
+          <label for="name">Nome de quem solicitou a demanda:</label>
+          <input type="text" id="name" name="nome"  />
+
+          <label for="nameOwner">Nome do proprietário/loja:</label>
+          <input type="text" id="nameOwner" name="nameOwner"  />
+
+          <label for="name">CNPJ/Unidade</label>
+          <input type="text" id="cnpj" name="cnpj"  />
+
+          <label for="tokens">Licenças necessárias:</label>
+          <input type="text" id="tokens" name="tokens"  />
+
+          <label for="Canceltokens">Licenças a serem canceladas:</label>
+          <input type="text" id="Canceltokens" name="Canceltokens"  />
+          <p>
+            <label>Motivo:</label>
+            <textarea rows="2" id="motivo"></textarea>
+          </p>
+
+          <p>
+            <label>Observações:</label>
+            <textarea rows="2" id="obs"></textarea>
+          </p>
+
+          <p>
+            <label>Resultado:</label>
+            <textarea rows="10" id="result"></textarea>
+          </p>
+
+          <button type="button"onclick="gerarMensagem()">Gerar mensagem</button>
+          <button type="button">Salvar</button>
+          <button type="button"id="copiarBtn" onclick="copiarMensagem()"disabled>Copiar</button>
         </div>
-        <!-- Adicione outros formulários para tipos de mensagens adicionais aqui -->
+      </form>
 
-        <div class="content-fase">
-            <div id="fase1" class="message-form">
-                <h2>SETUP 1° FASE = RESPONSÁVEL EQUIPE SUPORTE TÉCNICO</h2>
-                <form id="messageForm">
-
-                    <label for="clienteNome">Nome do Cliente:</label>
-                    <input type="text" id="clienteNome" required autocomplete="off">
-
-                    <h3>Configurações:</h3>
-                    <input type="checkbox" id="configLoja" class="styled-checkbox">
-                    <label for="configLoja" class="styled-label">Configuração Loja</label>
-
-                    <input type="checkbox" id="configImpressora" class="styled-checkbox">
-                    <label for="configImpressora" class="styled-label">Configuração/Teste impressora</label>
-
-                    <!-- Adicione classes aos outros checkboxes e labels -->
-
-                    <input type="checkbox" id="configCozinha" class="styled-checkbox">
-                    <label for="configCozinha" class="styled-label">Configuração Cozinha</label>
-
-                    <input type="checkbox" id="configDelivery" class="styled-checkbox">
-                    <label for="configDelivery" class="styled-label">Configuração Delivery</label>
-
-                    <input type="checkbox" id="configLicencas" class="styled-checkbox">
-                    <label for="configLicencas" class="styled-label">Licenças (Tokens) instaladas</label>
-                    <div id="licencasText" style="display: none;">
-                        <label for="licencasTexto">Texto de Licença:</label>
-                        <input type="text" id="licencasTexto">
-                        <button type="button" id="addLicencaButton" onclick="addLicenca()">Adicionar Licença</button>
-                    </div>
-                    <div id="licencasList" style="display: none;">
-                        <h4>Licenças Adicionadas:</h4>
-                        <ul id="licencasUl"></ul>
-                    </div>
-
-                    <input type="checkbox" id="configModuloFiscal" class="styled-checkbox">
-                    <label for="configModuloFiscal" class="styled-label">Configuração/Teste Módulo Fiscal</label>
-
-                    <label for="comments_fase1">Observações</label>
-                    <input type="text" id="comments_fase1" required autocomplete="off">
-
-                    <button type="button" onclick="generateMessage2()" class="styled-button">Gerar Mensagem</button>
-                    <button type="button" id="copyButton_fase1" onclick="copyToClipboard('messageOutput2')"
-                        class="styled-button">Copiar</button>
-                    <button type="button" onclick="clearForm('messageForm-fase1')" class="styled-button">Limpar
-                        Formulário</button>
-                </form>
-                <textarea id="messageOutput2" readonly class="styled-textarea"></textarea>
-            </div>
-        </div>
-
-        
-        <div class="content-fase">
-            <div id="fase2" class="message-form">
-                <h2>SETUP 2° FASE - DÚVIDAS SEMPRE VALIDAR PREVIAMENTE COM A NATALIA</h2>
-                <form id="messageForm">
-
-                    <label for="clienteNome">Nome do Cliente:</label>
-                    <input type="text" id="clienteNome" required autocomplete="off">
-
-                    <h3>Configurações:</h3>
-                    
-                    <input type="checkbox" id="config" class="styled-checkbox">
-                    <label for="config" class="styled-label">Análise + Avalição de Cardápio (como fazer o cadastramento) +
-                        Mapeamento e estrutra de Produtos.
-                    </label>
-
-                    <h3>Quem for responsável pela 2° Fase, deverá sempre realizar 100% a entrega.</h3>
-
-                    <input type="checkbox" id="configCas" class="styled-checkbox">
-                    <label for="configCas" class="styled-label">Cadastro de Cardápio PDV
-                    </label>
-
-                    <input type="checkbox" id="configMap" class="styled-checkbox">
-                    <label for="configMap" class="styled-label">Licenças (Tokens) instaladas</label>
-                    <div id="mapText" style="display: none;">
-                        <label for="mapTexto">Texto de Licença:</label>
-                        <input type="text" id="mapTexto">
-                        <button type="button" id="addLicencaButton" onclick="addLicenca()">Adicionar Licença</button>
-                    </div>
-                    <div id="mapList" style="display: none;">
-                        <h4>Licenças Adicionadas:</h4>
-                        <ul id="mapUl"></ul>
-                    </div>
-
-
-                </form>
-                <textarea id="messageOutput2" readonly class="styled-textarea"></textarea>
-            </div>
-        </div>
-    
-
-    
-        <script src="script.js"></script>
-</body>
-
+      <form id="form2" class="form">
+        <h2>Formulário 2</h2>
+        <label for="phone">Telefone:</label>
+        <input type="tel" id="phone" name="phone"  />
+        <label for="message">Mensagem:</label>
+        <textarea id="message" name="message" ></textarea>
+        <input type="submit" value="Enviar" />
+      </form>
+      <form id="form3" class="form">
+        <h2>Formulário 3</h2>
+        <label for="address">Endereço:</label>
+        <input type="text" id="address" name="address"  />
+        <label for="city">Cidade:</label>
+        <input type="text" id="city" name="city"  />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
