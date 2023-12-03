@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/nice-forms.css@0.1.7/dist/nice-forms.css"
+    />
     <title>Document</title>
   </head>
   <body>
@@ -16,26 +20,22 @@
     <div class="form-container">
       <form id="form1" class="form active">
         <h2>Solicitação de Licenças (Tokens)</h2>
-        <p>
-          Após uso documentar usar a mensagem para documentação no Trello do
-          Cliente.
-        </p>
 
         <div class="form-group">
           <label for="name">Nome de quem solicitou a demanda:</label>
-          <input type="text" id="name" name="nome"  />
+          <input type="text" id="name" name="nome" />
 
           <label for="nameOwner">Nome do proprietário/loja:</label>
-          <input type="text" id="nameOwner" name="nameOwner"  />
+          <input type="text" id="nameOwner" name="nameOwner" />
 
           <label for="name">CNPJ/Unidade</label>
-          <input type="text" id="cnpj" name="cnpj"  />
+          <input type="text" id="cnpj" name="cnpj" />
 
           <label for="tokens">Licenças necessárias:</label>
-          <input type="text" id="tokens" name="tokens"  />
+          <input type="text" id="tokens" name="tokens" />
 
           <label for="Canceltokens">Licenças a serem canceladas:</label>
-          <input type="text" id="Canceltokens" name="Canceltokens"  />
+          <input type="text" id="Canceltokens" name="Canceltokens" />
           <p>
             <label>Motivo:</label>
             <textarea rows="2" id="motivo"></textarea>
@@ -51,26 +51,164 @@
             <textarea rows="10" id="result"></textarea>
           </p>
 
-          <button type="button"onclick="gerarMensagem()">Gerar mensagem</button>
+          <button type="button" onclick="gerarMensagem()">
+            Gerar mensagem
+          </button>
           <button type="button">Salvar</button>
-          <button type="button"id="copiarBtn" onclick="copiarMensagem()"disabled>Copiar</button>
+          <button
+            type="button"
+            id="copiarBtn"
+            onclick="copiarMensagem()"
+            disabled
+          >
+            Copiar
+          </button>
         </div>
       </form>
 
       <form id="form2" class="form">
-        <h2>Formulário 2</h2>
-        <label for="phone">Telefone:</label>
-        <input type="tel" id="phone" name="phone"  />
-        <label for="message">Mensagem:</label>
-        <textarea id="message" name="message" ></textarea>
-        <input type="submit" value="Enviar" />
+        <h2>Documentação Trello (Formulário de registro)</h2>
+
+        <div class="form-group">
+          <div class="data-protocol">
+            <label style="color: white"
+              >Data:
+              <input style="background-color: #333; color: white" type="date" />
+            </label>
+
+            <label for="name">Número do Protocolo:
+              <input type="text" id="numberProtocol"/>
+            </label>
+          </div>
+
+          <div class="version-dir">
+            <label for="versionSystem"
+              >Produto(s) em Questão:
+              <textarea id="versionSystem" rows="3"></textarea>
+            </label>
+          </div>
+
+          <div class="radio">
+            <p>
+              <label>Situação fiscal/Status:</label>
+
+              <label for="certificado_digital">
+                <input
+                  id="certificado_digital"
+                  name="type"
+                  type="radio"
+                  value="certificado_digital"
+                  checked
+                />
+                Via Certificado Digital
+              </label>
+
+              <label for="equipamento_sat">
+                <input
+                  id="equipamento_sat"
+                  name="type"
+                  type="radio"
+                  value="equipamento_sat"
+                />
+                Via Equipamento SAT
+              </label>
+
+              <label for="nao_configurado">
+                <input
+                  id="nao_configurado"
+                  name="type"
+                  type="radio"
+                  value="nao_configurado"
+                />
+                Fiscal não configurado
+              </label>
+
+              <label for="outros_atendimentos">
+                <input
+                  id="outros_atendimentos"
+                  name="type"
+                  type="radio"
+                  value="outros_atendimentos"
+                />
+                Outros atendimentos
+              </label>
+
+
+            </p>
+          </div>
+
+          <!-- Campos relacionados à situação fiscal -->
+          <div class="situation-fields">
+            <div id="certificadoDigitalFields" class="form-fields">
+              <!-- Campos para a opção "Via Certificado Digital" -->
+              <label>Série: <input type="text" name="serie"/></label>
+              <label>ID Token: <input type="text" name="idToken"/></label>
+              <label>CSC: <input type="text" name="csc"/></label>
+            </div>
+
+            <div
+              id="equipamentoSATFields"
+              class="form-fields"
+              style="display: none"
+            >
+              <!-- Campos para a opção "Via Equipamento SAT" -->
+              <label>Código de Ativação:<input type="text" name="codigoAtivacao" /></label>
+              <label>Chave AC: <input type="text" name="chaveAC"/></label>
+              <label>Modelo do equipamento:<input type="text" name="modeloEquipamento" /></label>
+            </div>
+
+            <div
+              id="naoConfiguradoFields"
+              class="form-fields"
+              style="display: none"
+            >
+              <!-- Campos para a opção "Fiscal não configurado" -->
+              <label>Motivo (segundo o cliente): <input type="text" name="motivoNaoConfigurado"/></label>
+            </div>
+          </div>
+
+          <div class="obs">
+            <label
+              >Diretório dos sistemas:
+              <textarea id="diretorio"></textarea>
+            </label>
+            
+            <label
+              >Observações do Atendimento:
+              <textarea id="obs_atendimento"></textarea>
+            </label>
+
+          </div>
+
+          <div class="result">
+            <label>Mensagem:
+              <textarea id="result2"></textarea>
+            </label>
+          </div>
+
+          <div class="btn">
+            <button type="button" onclick="gerarMensagem2()">
+              Gerar mensagem
+            </button>
+            <button type="button">Salvar</button>
+            <button
+              type="button"
+              id="copiarBtn2"
+              onclick="copiarMensagem2()"
+              disabled
+            >
+              Copiar
+            </button>
+          </div>
+
+        </div>
       </form>
       <form id="form3" class="form">
         <h2>Formulário 3</h2>
         <label for="address">Endereço:</label>
-        <input type="text" id="address" name="address"  />
+        <input type="text" id="address" name="address" />
         <label for="city">Cidade:</label>
-        <input type="text" id="city" name="city"  />
+        <input type="text" id="city" name="city" />
         <input type="submit" value="Enviar" />
       </form>
     </div>
